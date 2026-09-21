@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: anshu-portfolio-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: FROM_NAME
+        value: Anshu Portfolio
+      - key: FROM_EMAIL
+        sync: false
+      - key: NOTIFICATION_EMAIL
+        value: anshusahu380t@gmail.com

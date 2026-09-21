@@ -1,0 +1,22 @@
+{
+  "name": "Anshu Kumar Sah Portfolio",
+  "short_name": "AKS Portfolio",
+  "description": "Premium bilingual 3D portfolio for Anshu Kumar Sah.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [
+    {
+      "src": "icons/favicon-32.svg",
+      "sizes": "32x32",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icons/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

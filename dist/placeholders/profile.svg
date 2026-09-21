@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="1040" viewBox="0 0 840 1040" role="img" aria-labelledby="title desc">
+  <title id="title">Professional profile placeholder</title>
+  <desc id="desc">Premium placeholder portrait for Anshu Kumar Sah</desc>
+  <rect width="840" height="1040" fill="#101010"/>
+  <path d="M0 0h840v1040H0z" fill="url(#grid)" opacity=".24"/>
+  <rect x="92" y="82" width="656" height="876" rx="18" fill="#171717" stroke="#ffffff" stroke-opacity=".14"/>
+  <circle cx="420" cy="350" r="126" fill="#2a2a2a" stroke="#5ee195" stroke-opacity=".5" stroke-width="4"/>
+  <path d="M232 796c28-164 112-246 188-246s160 82 188 246" fill="#242424" stroke="#ffffff" stroke-opacity=".18" stroke-width="4"/>
+  <path d="M254 300c48-86 112-128 192-124 76 4 136 48 180 132" fill="none" stroke="#ffffff" stroke-opacity=".24" stroke-width="8"/>
+  <text x="420" y="900" text-anchor="middle" fill="#f7f7f7" font-family="Inter,Arial" font-size="38" font-weight="800">AKS</text>
+  <text x="420" y="946" text-anchor="middle" fill="#9a9a9a" font-family="Inter,Arial" font-size="22">Professional photo placeholder</text>
+  <defs><pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0v36" fill="none" stroke="#fff" stroke-opacity=".14"/></pattern></defs>
+</svg>
