@@ -31,6 +31,37 @@ const projects = [
 ]
 
 function HomePage() {
+  const handleInquirySubmit = async (event) => {
+    event.preventDefault()
+    const form = event.currentTarget
+    const values = Object.fromEntries(new FormData(form).entries())
+    const parsed = contactSchema.safeParse(values)
+
+    if (!parsed.success) {
+      toast.error(parsed.error.issues[0]?.message || 'Please check the form fields.')
+      return
+    }
+
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://anshu-portfolio-uch2.onrender.com'
+
+    try {
+      const response = await fetch(`${apiUrl}/api/inquiries`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(prepareContactPayload(parsed.data)),
+      })
+
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.message || 'Unable to send inquiry.')
+
+      toast.success('Inquiry submitted successfully.')
+      form.reset()
+    } catch (error) {
+      console.error('Contact submission failed:', error)
+      toast.error('Message could not be sent. Please try again.')
+    }
+  }
+
   return <main className="scroll-page">
     <Helmet><title>Anshu Kumar Sah | Developer Portfolio</title></Helmet>
     <header className="scroll-nav"><a className="ak" href="#home">AK</a><nav>{['Home','About','Ideas','Skills','Projects','Education','Services','Certificates','Gallery','Pricing','Contact'].map((item) => <a href={'#' + item.toLowerCase()} key={item}>{item}</a>)}</nav><a className="talk" href="#contact">Let's Talk <ArrowUpRight size={14} /></a><button aria-label="Menu"><Menu size={19} /></button></header>
@@ -60,40 +91,6 @@ function HomePage() {
 
     <section id="contact" className="contact-section section"><div className="contact-layout"><div className="contact-intro"><p className="eyebrow">LET'S CONNECT</p><h1>Let’s work together.</h1><span>Tell me about your project, idea, or collaboration opportunity.</span><div className="channels"><a href={'mailto:'+profile.email}><Mail/><b>Email</b><small>{profile.email}</small></a><a href="https://www.linkedin.com/in/anshu-kumar-sah" target="_blank" rel="noreferrer"><BriefcaseBusiness/><b>LinkedIn</b><small>Connect with me</small></a><a href="https://github.com/at-sahu" target="_blank" rel="noreferrer"><Code2/><b>GitHub</b><small>View my work</small></a><a href={profile.whatsapp} target="_blank" rel="noreferrer"><MessageCircle/><b>WhatsApp</b><small>Chat with me</small></a></div></div><form className="inquiry-form" onSubmit={handleInquirySubmit}><div className="form-grid"><label>Full Name<input name="fullName" placeholder="Your full name" required /></label><label>Email<input name="email" type="email" placeholder="you@example.com" required /></label><label>Phone<input name="phone" type="tel" placeholder="+91 00000 00000" required /></label><label>Subject<input name="subject" placeholder="Website project" required /></label><label>Project Budget<select name="budget" defaultValue="" required><option value="" disabled>Select budget</option><option>Under ₹5,000</option><option>₹5,000 - ₹15,000</option><option>₹15,000+</option><option>Let’s discuss</option></select></label><label>Project Type<select name="projectType" defaultValue="" required><option value="" disabled>Select type</option><option>Portfolio website</option><option>Business website</option><option>UI/UX design</option><option>Backend-ready frontend</option></select></label></div><label>Message<textarea name="message" placeholder="Tell me about your idea, timeline and goals..." required /></label><button type="submit">Send Inquiry <ArrowUpRight size={16} /></button><small>Form UI is ready. Backend connection will send inquiries to your email/database.</small></form></div></section>
   </main>
-}
-async function handleInquirySubmit(event) {
-  event.preventDefault()
-  const form = event.currentTarget
-  const values = Object.fromEntries(new FormData(form).entries())
-  const parsed = contactSchema.safeParse(values)
-
-  if (!parsed.success) {
-    toast.error(parsed.error.issues[0]?.message || 'Please check the form fields.')
-    return
-  }
-
-  const apiUrl = import.meta.env.VITE_API_URL
-  if (!apiUrl) {
-    toast.error('Backend URL is not configured.')
-    return
-  }
-
-  try {
-    const response = await fetch(`${apiUrl}/api/inquiries`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(prepareContactPayload(parsed.data)),
-    })
-
-    const result = await response.json()
-    if (!response.ok) throw new Error(result.message || 'Unable to send inquiry.')
-
-    toast.success('Inquiry submitted successfully.')
-    form.reset()
-  } catch (error) {
-    console.error('Contact submission failed:', error)
-    toast.error('Message could not be sent. Please try again.')
-  }
 }
 
 function Socials(){return <div className="socials"><a href="https://github.com/at-sahu" target="_blank" rel="noreferrer"><Code2/></a><a href="https://www.linkedin.com/in/anshu-kumar-sah" target="_blank" rel="noreferrer"><BriefcaseBusiness/></a><a href={'mailto:'+profile.email}><Mail/></a><a href={profile.whatsapp} target="_blank" rel="noreferrer"><MessageCircle/></a></div>}
