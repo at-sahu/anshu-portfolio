@@ -1,6 +1,0 @@
-Resume placeholder for Anshu Kumar Sah.
-
-Current semester: Semester 3
-Expected graduation: 2029
-
-Replace this file with the final resume PDF and update src/data/portfolio.js if the filename changes.
