@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import toast from 'react-hot-toast'
 import {
@@ -31,6 +32,8 @@ const projects = [
 ]
 
 function HomePage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   const handleInquirySubmit = async (event) => {
     event.preventDefault()
     const form = event.currentTarget
@@ -64,7 +67,7 @@ function HomePage() {
 
   return <main className="scroll-page">
     <Helmet><title>Anshu Kumar Sah | Developer Portfolio</title></Helmet>
-    <header className="scroll-nav"><a className="ak" href="#home">AK</a><nav>{['Home','About','Ideas','Skills','Projects','Education','Services','Certificates','Gallery','Pricing','Contact'].map((item) => <a href={'#' + item.toLowerCase()} key={item}>{item}</a>)}</nav><a className="talk" href="#contact">Let's Talk <ArrowUpRight size={14} /></a><button aria-label="Menu"><Menu size={19} /></button></header>
+    <header className="scroll-nav"><a className="ak" href="#home" onClick={() => setMobileMenuOpen(false)}>AK</a><nav className={mobileMenuOpen ? 'mobile-open' : ''}>{['Home','About','Ideas','Skills','Projects','Education','Services','Certificates','Gallery','Pricing','Contact'].map((item) => <a href={'#' + item.toLowerCase()} key={item} onClick={() => setMobileMenuOpen(false)}>{item}</a>)}</nav><a className="talk" href="#contact">Let's Talk <ArrowUpRight size={14} /></a><button type="button" aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'} aria-expanded={mobileMenuOpen} onClick={() => setMobileMenuOpen((value) => !value)}><Menu size={19} /></button></header>
 
     <section id="home" className="home-section section">
       <div className="home-copy"><span className="online"><i /> Open to Freelance Work</span><p>Hi, I'm</p><h1>Anshu <em>Kumar Sah</em></h1><h2>Full Stack Developer <b>|</b> AI Enthusiast <b>|</b> UI/UX Designer</h2><span className="home-intro">B.Tech CSE (AI & ML) student at U. V. Patel College of Engineering, Ganpat University. I build modern, useful and accessible digital products.</span><div className="actions"><a href="#projects">View My Work <ArrowUpRight size={16} /></a><a className="outline" href={profile.resumeUrl} target="_blank" rel="noreferrer">View Resume <ExternalLink size={15} /></a></div><Socials /><div className="metrics"><Metric n="11+" t="Certificates" /><Metric n="Freelance" t="Available" /><Metric n="2029" t="Graduation" /><Metric n="∞" t="Learning" /></div></div>

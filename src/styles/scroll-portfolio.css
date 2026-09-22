@@ -19,3 +19,476 @@ html{scroll-behavior:smooth}.scroll-page{--bg:#050914;--card:#0c1425;--line:rgba
 .inquiry-form button { display:inline-flex; align-items:center; gap:7px; border:0; border-radius:22px; padding:11px 17px; background:linear-gradient(120deg,#e4fbff,#6ee7f3); color:#07131d; font-size:11px; font-weight:800; cursor:pointer; }
 .inquiry-form > small { display:block; margin-top:13px; color:#a5b8cc; font-size:9px; }
 @media(max-width:800px){.contact-layout{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.portrait .ring{width:94%;left:0}.portrait img{border-radius:30% 30% 4% 4%;}}
+
+/* Cross-device responsive hardening: keeps the existing visual structure intact while
+   preventing overflow, overlap and cramped controls on phones/tablets. */
+.scroll-page,
+.scroll-page .section,
+.scroll-page .home-section,
+.scroll-page .about-section,
+.scroll-page .ideas-section,
+.scroll-page .skills-section,
+.scroll-page .projects-section,
+.scroll-page .education-section,
+.scroll-page .services-section,
+.scroll-page .certificates-section,
+.scroll-page .gallery-section,
+.scroll-page .pricing-section,
+.scroll-page .contact-section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.scroll-page * {
+  min-width: 0;
+}
+
+.scroll-page img,
+.scroll-page svg,
+.scroll-page canvas {
+  max-width: 100%;
+}
+
+.scroll-page h1,
+.scroll-page h2,
+.scroll-page h3,
+.scroll-page p,
+.scroll-page span,
+.scroll-page small,
+.scroll-page b,
+.scroll-page a,
+.scroll-page label {
+  overflow-wrap: anywhere;
+}
+
+.scroll-nav {
+  min-width: 0;
+}
+
+@media (max-width: 1000px) {
+  .scroll-nav {
+    width: min(100% - 20px, 900px);
+  }
+
+  .scroll-nav nav {
+    min-width: 0;
+  }
+
+  .home-section,
+  .about-section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-copy {
+    max-width: 100%;
+  }
+
+  .portrait {
+    width: min(100%, 560px);
+    min-height: 390px;
+    height: min(58vw, 540px);
+    margin: 0 auto;
+  }
+
+  .about-art {
+    width: 100%;
+  }
+
+  .skills-wall {
+    width: 100%;
+  }
+
+  .project-grid,
+  .services-section > div,
+  .pricing-section > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .certificates-section > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-section > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-section article {
+    min-width: 0;
+  }
+
+  .contact-layout {
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .scroll-nav {
+    top: 7px;
+    height: 52px;
+    margin: 7px auto -59px;
+    padding: 0 12px;
+    gap: 10px;
+  }
+
+  .scroll-nav .ak {
+    flex: 0 0 auto;
+  }
+
+  .scroll-nav nav {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding: 9px;
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(7, 12, 24, .97);
+    box-shadow: 0 20px 50px rgba(0,0,0,.32);
+    backdrop-filter: blur(18px);
+  }
+
+  .scroll-nav nav.mobile-open {
+    display: flex;
+  }
+
+  .scroll-nav nav a {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+  }
+
+  .scroll-nav nav a:active,
+  .scroll-nav nav a:hover {
+    background: rgba(120, 91, 198, .16);
+  }
+
+  .scroll-nav .talk {
+    display: none;
+  }
+
+  .scroll-nav > button {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    margin-left: auto;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: rgba(12, 20, 37, .9);
+    color: white;
+  }
+
+  .section {
+    min-height: auto;
+    padding: 82px 20px;
+    scroll-margin-top: 24px;
+  }
+
+  .home-section {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 30px;
+    padding-top: 105px;
+    padding-bottom: 54px;
+  }
+
+  .home-copy {
+    width: 100%;
+  }
+
+  .home-copy > p {
+    font-size: 20px;
+  }
+
+  .home-copy h1 {
+    max-width: 100%;
+    font-size: clamp(42px, 13vw, 64px);
+    letter-spacing: -3px;
+    line-height: .94;
+  }
+
+  .home-copy h2 {
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .home-intro {
+    max-width: 100%;
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  .actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .actions a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .metrics {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 18px;
+    margin-top: 24px;
+  }
+
+  .metrics span {
+    min-width: 0;
+  }
+
+  .portrait {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: min(100%, 420px);
+    height: 360px;
+    min-height: 360px;
+    margin: 0 auto;
+    opacity: 1;
+  }
+
+  .portrait img {
+    left: 17%;
+    width: 66%;
+    height: 92%;
+    object-position: center 15%;
+  }
+
+  .portrait .ring {
+    width: 94%;
+    left: 3%;
+    top: 48%;
+  }
+
+  .portrait .label.one {
+    top: 25%;
+    left: 0;
+  }
+
+  .portrait .label.two {
+    top: 51%;
+    right: 0;
+  }
+
+  .portrait .label.three {
+    right: 0;
+    bottom: 15%;
+  }
+
+  .about-section,
+  .ideas-section {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .about-words,
+  .ideas-copy {
+    width: 100%;
+  }
+
+  .about-words h1,
+  .ideas-copy h1,
+  .skills-section h1,
+  .projects-section h1,
+  .education-section h1,
+  .services-section h1,
+  .certificates-section h1,
+  .gallery-section h1,
+  .pricing-section h1,
+  .contact-section h1 {
+    max-width: 100%;
+    font-size: clamp(34px, 10vw, 48px);
+    line-height: 1.02;
+    letter-spacing: -2px;
+  }
+
+  .about-words > p:not(.eyebrow) {
+    font-size: 12px;
+  }
+
+  .fact-grid,
+  .form-grid,
+  .channels {
+    grid-template-columns: 1fr;
+  }
+
+  .about-art {
+    height: 260px;
+    margin-top: 12px;
+  }
+
+  .laptop {
+    width: 90%;
+    height: 68%;
+    right: 5%;
+  }
+
+  .laptop > div {
+    padding: 22px;
+    font-size: 13px;
+  }
+
+  .about-quote {
+    font-size: 14px;
+    bottom: 0;
+  }
+
+  .ideas-section {
+    min-height: 680px;
+  }
+
+  .ideas-copy h1 {
+    font-size: clamp(62px, 18vw, 92px);
+  }
+
+  .ideas-copy > span {
+    max-width: 100%;
+    font-size: 12px;
+  }
+
+  .idea-steps {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .coding-scene {
+    position: relative;
+    right: auto;
+    top: auto;
+    width: 100%;
+    height: 260px;
+    margin-top: 18px;
+    opacity: .86;
+  }
+
+  .floating-code {
+    right: 0;
+    max-width: 72%;
+    font-size: 10px;
+  }
+
+  .laptop-3d {
+    width: 88%;
+    height: 62%;
+    left: 4%;
+  }
+
+  .skills-wall,
+  .project-grid,
+  .services-section > div,
+  .pricing-section > div,
+  .certificates-section > div,
+  .gallery-section > div {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .skills-wall article {
+    min-height: 90px;
+  }
+
+  .project-grid article,
+  .services-section article,
+  .pricing-section article,
+  .certificates-section article {
+    min-width: 0;
+  }
+
+  .edu-line {
+    width: 100%;
+    margin: 34px 0 0 20px;
+    padding-left: 28px;
+  }
+
+  .edu-line article > i {
+    left: -35px;
+  }
+
+  .gallery-section article {
+    height: 260px;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .inquiry-form {
+    padding: 16px;
+  }
+
+  .inquiry-form button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .section {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .scroll-nav {
+    width: calc(100% - 14px);
+    padding: 0 9px;
+  }
+
+  .home-section {
+    padding-top: 98px;
+  }
+
+  .home-copy h1 {
+    font-size: 40px;
+  }
+
+  .home-copy h2 {
+    font-size: 12px;
+  }
+
+  .portrait {
+    height: 315px;
+    min-height: 315px;
+  }
+
+  .portrait .label {
+    padding: 6px 8px;
+    font-size: 8px;
+  }
+
+  .metrics {
+    gap: 12px;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .scroll-page .actions a:hover,
+  .scroll-page a:hover,
+  .scroll-page article:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-page *,
+  .scroll-page *::before,
+  .scroll-page *::after {
+    scroll-behavior: auto !important;
+  }
+}
