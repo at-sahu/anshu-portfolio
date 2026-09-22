@@ -35,7 +35,8 @@ function ContactSection() {
 
   const onSubmit = async (values) => {
     const payload = prepareContactPayload(values)
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+    const configuredApiUrl = String(import.meta.env.VITE_API_URL || '').trim().replace(/\/$/, '')
+    const apiUrl = configuredApiUrl.startsWith('https://') ? configuredApiUrl : 'https://anshu-portfolio-uch2.onrender.com'
 
     try {
       const response = await fetch(`${apiUrl}/api/inquiries`, {

@@ -45,7 +45,8 @@ function HomePage() {
       return
     }
 
-    const apiUrl = import.meta.env.VITE_API_URL || 'https://anshu-portfolio-uch2.onrender.com'
+    const configuredApiUrl = String(import.meta.env.VITE_API_URL || '').trim().replace(/\/$/, '')
+    const apiUrl = configuredApiUrl.startsWith('https://') ? configuredApiUrl : 'https://anshu-portfolio-uch2.onrender.com'
 
     try {
       const response = await fetch(`${apiUrl}/api/inquiries`, {
