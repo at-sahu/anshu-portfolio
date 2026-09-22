@@ -492,3 +492,144 @@ html{scroll-behavior:smooth}.scroll-page{--bg:#050914;--card:#0c1425;--line:rgba
     scroll-behavior: auto !important;
   }
 }
+
+/* Final mobile overlap fixes — preserves the existing layout/design. */
+@media (max-width: 700px) {
+  /* HOME: keep CTA, social icons and metrics in normal document flow. */
+  .home-section {
+    min-height: auto;
+    gap: 34px;
+    padding-bottom: 72px;
+  }
+
+  .home-copy {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .actions {
+    flex: 0 0 auto;
+  }
+
+  .metrics {
+    position: static;
+    width: 100%;
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 24px;
+    order: 5;
+  }
+
+  .socials {
+    order: 4;
+  }
+
+  .portrait {
+    order: 2;
+  }
+
+  /* ABOUT: give the laptop illustration its own space so the quote never
+     sits behind the keyboard/base. */
+  .about-art {
+    height: 325px;
+    margin-top: 28px;
+    overflow: visible;
+  }
+
+  .about-art .laptop {
+    top: 4%;
+    right: 4%;
+    width: 92%;
+    height: 57%;
+  }
+
+  .about-art .laptop > div {
+    padding: 18px;
+    font-size: 12px;
+  }
+
+  .about-art .laptop b {
+    margin: 9px 0;
+  }
+
+  .about-art .laptop i {
+    font-size: 10px;
+  }
+
+  .about-quote {
+    z-index: 4;
+    left: 4%;
+    bottom: 2px;
+    font-size: 14px;
+  }
+
+  /* IDEAS: prevent the giant heading/scene from competing for the same
+     vertical space and keep anchor jumps below the sticky navbar. */
+  .ideas-section {
+    min-height: 760px;
+    padding-top: 105px;
+    padding-bottom: 70px;
+    justify-content: flex-start;
+  }
+
+  .ideas-copy h1 {
+    font-size: clamp(58px, 17vw, 82px);
+    line-height: .9;
+  }
+
+  .ideas-copy > span {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .idea-steps {
+    margin-top: 25px;
+  }
+
+  .coding-scene {
+    height: 245px;
+    margin-top: 30px;
+    opacity: .8;
+  }
+
+  .floating-code {
+    top: 0;
+    right: 2%;
+    max-width: 68%;
+  }
+
+  .laptop-3d {
+    bottom: 0;
+    width: 86%;
+    height: 61%;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-section {
+    padding-bottom: 64px;
+  }
+
+  .metrics {
+    gap: 13px 16px;
+  }
+
+  .about-art {
+    height: 300px;
+  }
+
+  .about-art .laptop {
+    width: 94%;
+    right: 3%;
+  }
+
+  .ideas-section {
+    min-height: 720px;
+    padding-top: 100px;
+  }
+
+  .ideas-copy h1 {
+    font-size: 58px;
+  }
+}
